@@ -1,7 +1,7 @@
 # IDE and Editor folders
 .vscode/
 .claude/
-.data/
+data/
 
 # OS generated files
 .DS_Store
