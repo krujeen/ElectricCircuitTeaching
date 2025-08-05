@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตอนที่ 1: รู้จักวงจรไฟฟ้าอย่างง่าย - สื่อการเรียนการสอน</title>
+    <link rel="stylesheet" href="lesson1-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-arrow-left"></i>
+                <span>กลับหน้าหลัก</span>
+            </a>
+            <div class="nav-title">
+                <h1>ตอนที่ 1: รู้จักวงจรไฟฟ้าอย่างง่าย</h1>
+            </div>
+            <div class="nav-progress">
+                <span id="progressText">0%</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Learning Objectives Section -->
+        <section class="learning-objectives-section">
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> จุดประสงค์การเรียนรู้</h2>
+                <p>เมื่อเรียนจบตอนนี้แล้ว นักเรียนจะสามารถ:</p>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-item" data-objective="1">
+                    <div class="objective-number">1</div>
+                    <div class="objective-text">วิเคราะห์แผนภาพวงจรไฟฟ้า และระบุชื่ออุปกรณ์ไฟฟ้าหรือชิ้นส่วนอิเล็กทรอนิกส์ในวงจรไฟฟ้าที่สอดคล้องกับสัญลักษณ์ทางไฟฟ้า</div>
+                    <div class="objective-status"><i class="fas fa-circle"></i></div>
+                </div>
+                <div class="objective-item" data-objective="2">
+                    <div class="objective-number">2</div>
+                    <div class="objective-text">เปรียบเทียบความแตกต่างระหว่างวงจรไฟฟ้าแบบอนุกรมและแบบขนาน</div>
+                    <div class="objective-status"><i class="fas fa-circle"></i></div>
+                </div>
+                <div class="objective-item" data-objective="3">
+                    <div class="objective-number">3</div>
+                    <div class="objective-text">ทำนายผลที่เกิดขึ้นเมื่อถอดหลอดไฟออกจากวงจรไฟฟ้าแต่ละแบบ</div>
+                    <div class="objective-status"><i class="fas fa-circle"></i></div>
+                </div>
+                <div class="objective-item" data-objective="4">
+                    <div class="objective-number">4</div>
+                    <div class="objective-text">อธิบายการทำงานของวงจรไฟฟ้าในชีวิตประจำวัน</div>
+                    <div class="objective-status"><i class="fas fa-circle"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="section-header">
+                <h2><i class="fas fa-play-circle"></i> บทนำ</h2>
+            </div>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h3>วงจรไฟฟ้าอย่างง่าย คือ อะไร?</h3>
+                    <p>เส้นทางที่กระแสไฟฟ้าสามารถไหลผ่านได้ โดยประกอบด้วย:</p>
+                    <div class="component-list">
+                        <div class="component-item">
+                            <i class="fas fa-battery-half"></i>
+                            <span><strong>แหล่งจ่ายไฟฟ้า</strong> (เช่น ถ่านไฟฉาย)</span>
+                        </div>
+                        <div class="component-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span><strong>อุปกรณ์ไฟฟ้า</strong> (เช่น หลอดไฟ)</span>
+                        </div>
+                        <div class="component-item">
+                            <i class="fas fa-grip-lines"></i>
+                            <span><strong>สายไฟเชื่อมต่อ</strong> และ <strong>สวิตช์</strong></span>
+                        </div>
+                    </div>
+                    <div class="important-note">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>วงจรไฟฟ้าจะทำงานได้ต้องเป็น <strong>วงจรปิด</strong> (มีเส้นทางกระแสไฟฟ้าสมบูรณ์)</span>
+                    </div>
+                </div>
+                <div class="intro-visual">
+                    <div class="circuit-demo" id="circuitDemo">
+                        <div class="demo-title">การสาธิตเบื้องต้น</div>
+                        <div class="demo-boxes">
+                            <div class="demo-box" id="demoBox1">
+                                <h4>กล่องโคมไฟชุดที่ 1</h4>
+                                <p>(วงจรแบบอนุกรม)</p>
+                                <div class="demo-circuit-container">
+                                    <svg class="demo-circuit-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Battery -->
+                                        <g class="demo-battery" transform="translate(20, 80)">
+                                            <rect x="0" y="10" width="30" height="20" fill="#4CAF50" stroke="#388E3C" stroke-width="2" rx="3"/>
+                                            <rect x="30" y="15" width="5" height="10" fill="#4CAF50"/>
+                                            <text x="17" y="45" text-anchor="middle" font-size="10" fill="#333">ถ่าน</text>
+                                        </g>
+                                        
+                                        <!-- Switch -->
+                                        <g class="demo-switch" transform="translate(100, 85)">
+                                            <circle cx="0" cy="0" r="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                                            <circle cx="30" cy="0" r="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                                            <line class="switch-line" x1="0" y1="0" x2="25" y2="-10" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+                                            <text x="15" y="25" text-anchor="middle" font-size="10" fill="#333">สวิตช์</text>
+                                        </g>
+                                        
+                                        <!-- Bulb 1 -->
+                                        <g class="demo-bulb-1" transform="translate(200, 85)">
+                                            <circle cx="0" cy="0" r="15" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                                            <text x="0" y="3" text-anchor="middle" font-size="16">💡</text>
+                                            <text x="0" y="30" text-anchor="middle" font-size="10" fill="#333">หลอด 1</text>
+                                        </g>
+                                        
+                                        <!-- Bulb 2 -->
+                                        <g class="demo-bulb-2" transform="translate(300, 85)">
+                                            <circle cx="0" cy="0" r="15" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                                            <text x="0" y="3" text-anchor="middle" font-size="16">💡</text>
+                                            <text x="0" y="30" text-anchor="middle" font-size="10" fill="#333">หลอด 2</text>
+                                        </g>
+                                        
+                                        <!-- Wires for Series Circuit -->
+                                        <!-- Top wire: Battery + to Switch -->
+                                        <line class="demo-wire wire-1" x1="55" y1="90" x2="100" y2="85" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Switch to Bulb 1 -->
+                                        <line class="demo-wire wire-2" x1="130" y1="85" x2="185" y2="85" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Bulb 1 to Bulb 2 -->
+                                        <line class="demo-wire wire-3" x1="215" y1="85" x2="285" y2="85" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Bottom return wire: Bulb 2 to Battery -->
+                                        <line class="demo-wire wire-4" x1="300" y1="100" x2="300" y2="130" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-5" x1="300" y1="130" x2="35" y2="130" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-6" x1="35" y1="130" x2="35" y2="110" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Current flow animation -->
+                                        <circle class="current-flow" r="3" fill="#2196F3" opacity="0">
+                                            <animateMotion dur="2s" repeatCount="indefinite" rotate="auto" opacity="0">
+                                                <mpath href="#series-path"/>
+                                            </animateMotion>
+                                        </circle>
+                                        
+                                        <!-- Path for current animation -->
+                                        <path id="series-path" d="M 55,90 L 100,85 L 130,85 L 185,85 L 215,85 L 285,85 L 300,100 L 300,130 L 35,130 L 35,110" 
+                                              fill="none" stroke="none"/>
+                                    </svg>
+                                </div>
+                                <div class="demo-controls">
+                                    <button class="demo-btn" onclick="toggleDemo(1)">กดสวิตช์</button>
+                                    <button class="demo-btn" onclick="removeBulb(1)">ถอดหลอด 1</button>
+                                    <button class="demo-btn" onclick="resetDemo(1)">รีเซ็ต</button>
+                                </div>
+                            </div>
+                            
+                            <div class="demo-box" id="demoBox2">
+                                <h4>กล่องโคมไฟชุดที่ 2</h4>
+                                <p>(วงจรแบบขนาน)</p>
+                                <div class="demo-circuit-container">
+                                    <svg class="demo-circuit-svg" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Battery -->
+                                        <g class="demo-battery" transform="translate(20, 100)">
+                                            <rect x="0" y="10" width="30" height="20" fill="#4CAF50" stroke="#388E3C" stroke-width="2" rx="3"/>
+                                            <rect x="30" y="15" width="5" height="10" fill="#4CAF50"/>
+                                            <text x="17" y="45" text-anchor="middle" font-size="10" fill="#333">ถ่าน</text>
+                                        </g>
+                                        
+                                        <!-- Switch -->
+                                        <g class="demo-switch" transform="translate(100, 105)">
+                                            <circle cx="0" cy="0" r="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                                            <circle cx="30" cy="0" r="8" fill="#FF9800" stroke="#F57C00" stroke-width="2"/>
+                                            <line class="switch-line" x1="0" y1="0" x2="25" y2="-10" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+                                            <text x="15" y="25" text-anchor="middle" font-size="10" fill="#333">สวิตช์</text>
+                                        </g>
+                                        
+                                        <!-- Junction point -->
+                                        <circle cx="200" cy="105" r="4" fill="#333"/>
+                                        
+                                        <!-- Bulb 1 (Top branch) -->
+                                        <g class="demo-bulb-1" transform="translate(300, 70)">
+                                            <circle cx="0" cy="0" r="15" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                                            <text x="0" y="3" text-anchor="middle" font-size="16">💡</text>
+                                            <text x="0" y="30" text-anchor="middle" font-size="10" fill="#333">หลอด 1</text>
+                                        </g>
+                                        
+                                        <!-- Bulb 2 (Bottom branch) -->
+                                        <g class="demo-bulb-2" transform="translate(300, 140)">
+                                            <circle cx="0" cy="0" r="15" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                                            <text x="0" y="3" text-anchor="middle" font-size="16">💡</text>
+                                            <text x="0" y="30" text-anchor="middle" font-size="10" fill="#333">หลอด 2</text>
+                                        </g>
+                                        
+                                        <!-- Wires for Parallel Circuit -->
+                                        <!-- Main line: Battery + to Switch -->
+                                        <line class="demo-wire wire-1" x1="55" y1="110" x2="100" y2="105" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Switch to junction -->
+                                        <line class="demo-wire wire-2" x1="130" y1="105" x2="196" y2="105" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Top branch: Junction to Bulb 1 -->
+                                        <line class="demo-wire wire-3" x1="200" y1="105" x2="200" y2="70" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-4" x1="200" y1="70" x2="285" y2="70" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Bottom branch: Junction to Bulb 2 -->
+                                        <line class="demo-wire wire-5" x1="200" y1="105" x2="200" y2="140" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-6" x1="200" y1="140" x2="285" y2="140" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Return wires -->
+                                        <line class="demo-wire wire-7" x1="315" y1="70" x2="340" y2="70" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-8" x1="315" y1="140" x2="340" y2="140" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-9" x1="340" y1="70" x2="340" y2="140" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-10" x1="340" y1="105" x2="35" y2="180" stroke="#666" stroke-width="3"/>
+                                        <line class="demo-wire wire-11" x1="35" y1="180" x2="35" y2="130" stroke="#666" stroke-width="3"/>
+                                        
+                                        <!-- Current flow animations -->
+                                        <circle class="current-flow-1" r="3" fill="#2196F3" opacity="0">
+                                            <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
+                                                <mpath href="#parallel-path-1"/>
+                                            </animateMotion>
+                                        </circle>
+                                        
+                                        <circle class="current-flow-2" r="3" fill="#2196F3" opacity="0">
+                                            <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
+                                                <mpath href="#parallel-path-2"/>
+                                            </animateMotion>
+                                        </circle>
+                                        
+                                        <!-- Paths for current animation -->
+                                        <path id="parallel-path-1" d="M 55,110 L 100,105 L 130,105 L 196,105 L 200,70 L 285,70 L 315,70 L 340,70 L 340,105 L 35,180 L 35,130" 
+                                              fill="none" stroke="none"/>
+                                        <path id="parallel-path-2" d="M 55,110 L 100,105 L 130,105 L 196,105 L 200,140 L 285,140 L 315,140 L 340,140 L 340,105 L 35,180 L 35,130" 
+                                              fill="none" stroke="none"/>
+                                    </svg>
+                                </div>
+                                <div class="demo-controls">
+                                    <button class="demo-btn" onclick="toggleDemo(2)">กดสวิตช์</button>
+                                    <button class="demo-btn" onclick="removeBulb(2)">ถอดหลอด 1</button>
+                                    <button class="demo-btn" onclick="resetDemo(2)">รีเซ็ต</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Questions Section -->
+        <section class="questions-section">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> คำถามสำหรับนักเรียน</h2>
+            </div>
+            <div class="questions-container">
+                <div class="question-item">
+                    <h3>1. เมื่อกดสวิตช์ กล่องโคมไฟทำงานอย่างไร?</h3>
+                    <div class="answer-options">
+                        <div class="answer-option" data-correct="true">
+                            <input type="radio" name="q1" id="q1a" value="a">
+                            <label for="q1a">หลอดไฟทั้งสองดวงสว่าง</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q1" id="q1b" value="b">
+                            <label for="q1b">มีหลอดไฟเพียงดวงเดียวสว่าง</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q1" id="q1c" value="c">
+                            <label for="q1c">ไม่มีหลอดไฟดวงใดสว่าง</label>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback1"></div>
+                </div>
+
+                <div class="question-item">
+                    <h3>2. เมื่อถอดหลอดไฟออกจากกล่องโคมไฟ กล่องละ 1 หลอด โคมไฟ 2 ชุดนี้ทำงานแตกต่างกันหรือไม่?</h3>
+                    <div class="answer-options">
+                        <div class="answer-option" data-correct="true">
+                            <input type="radio" name="q2" id="q2a" value="a">
+                            <label for="q2a">แตกต่างกัน: ชุดที่ 1 หลอดที่เหลือดับ, ชุดที่ 2 หลอดที่เหลือยังสว่าง</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q2" id="q2b" value="b">
+                            <label for="q2b">เหมือนกัน: หลอดที่เหลือในทั้งสองชุดดับ</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q2" id="q2c" value="c">
+                            <label for="q2c">เหมือนกัน: หลอดที่เหลือในทั้งสองชุดยังสว่าง</label>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback2"></div>
+                </div>
+
+                <div class="question-item">
+                    <h3>3. กล่องโคมไฟ 2 ชุด มีการต่อวงจรไฟฟ้าแตกต่างกันหรือไม่?</h3>
+                    <div class="answer-options">
+                        <div class="answer-option" data-correct="true">
+                            <input type="radio" name="q3" id="q3a" value="a">
+                            <label for="q3a">แตกต่างกัน: ชุดที่ 1 เป็นวงจรแบบอนุกรม, ชุดที่ 2 เป็นวงจรแบบขนาน</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q3" id="q3b" value="b">
+                            <label for="q3b">เหมือนกัน: ทั้งสองชุดเป็นวงจรแบบอนุกรม</label>
+                        </div>
+                        <div class="answer-option">
+                            <input type="radio" name="q3" id="q3c" value="c">
+                            <label for="q3c">เหมือนกัน: ทั้งสองชุดเป็นวงจรแบบขนาน</label>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Circuit Types Section -->
+        <section class="circuit-types-section">
+            <div class="section-header">
+                <h2><i class="fas fa-sitemap"></i> ประเภทของวงจรไฟฟ้า</h2>
+            </div>
+
+            <!-- Series Circuit -->
+            <div class="circuit-type">
+                <div class="circuit-header">
+                    <h3><i class="fas fa-link"></i> วงจรไฟฟ้าแบบอนุกรม (Series Circuit)</h3>
+                </div>
+                <div class="circuit-content">
+                    <div class="circuit-info">
+                        <h4>ลักษณะสำคัญ:</h4>
+                        <ul>
+                            <li>หลอดไฟต่อเรียงกันเป็นแถวเดียว</li>
+                            <li>กระแสไฟฟ้าไหลผ่านทางเดียว</li>
+                            <li>มีเส้นทางกระแสไฟฟ้าเพียงทางเดียว</li>
+                        </ul>
+                        <h4>ผลที่เกิดขึ้น:</h4>
+                        <ul>
+                            <li>หากหลอดใดดับ หลอดอื่นจะดับตาม</li>
+                            <li>หากถอดหลอดไฟออก 1 หลอด หลอดที่เหลือจะดับ</li>
+                        </ul>
+                    </div>
+                    <div class="circuit-simulator">
+                        <div class="simulator-title">จำลองวงจรแบบอนุกรม</div>
+                        <div class="circuit-diagram-container">
+                            <svg class="circuit-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Circuit Background -->
+                                <rect x="0" y="0" width="600" height="300" fill="#f8f9ff" stroke="#e8f2ff" stroke-width="2" rx="10"/>
+                                
+                                <!-- Battery -->
+                                <g class="sim-battery" id="simSeriesBattery" transform="translate(50, 130)">
+                                    <rect x="0" y="10" width="40" height="30" fill="#4CAF50" stroke="#388E3C" stroke-width="3" rx="5"/>
+                                    <rect x="40" y="20" width="8" height="10" fill="#4CAF50"/>
+                                    <text x="24" y="55" text-anchor="middle" font-size="12" font-weight="600" fill="#333">ถ่าน</text>
+                                    <text x="10" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="white">-</text>
+                                    <text x="45" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="white">+</text>
+                                </g>
+                                
+                                <!-- Switch -->
+                                <g class="sim-switch" id="simSeriesSwitch" transform="translate(150, 145)">
+                                    <circle cx="0" cy="0" r="12" fill="#FF9800" stroke="#F57C00" stroke-width="3"/>
+                                    <circle cx="40" cy="0" r="12" fill="#FF9800" stroke="#F57C00" stroke-width="3"/>
+                                    <line class="switch-lever" x1="0" y1="0" x2="35" y2="-15" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+                                    <text x="20" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#333">สวิตช์</text>
+                                </g>
+                                
+                                <!-- Bulb 1 -->
+                                <g class="sim-bulb" id="simSeriesBulb1" transform="translate(300, 145)">
+                                    <circle cx="0" cy="0" r="20" fill="#FFF3E0" stroke="#FF9800" stroke-width="3"/>
+                                    <text x="0" y="5" text-anchor="middle" font-size="20">💡</text>
+                                    <text x="0" y="40" text-anchor="middle" font-size="12" font-weight="600" fill="#333">หลอด 1</text>
+                                </g>
+                                
+                                <!-- Bulb 2 -->
+                                <g class="sim-bulb" id="simSeriesBulb2" transform="translate(450, 145)">
+                                    <circle cx="0" cy="0" r="20" fill="#FFF3E0" stroke="#FF9800" stroke-width="3"/>
+                                    <text x="0" y="5" text-anchor="middle" font-size="20">💡</text>
+                                    <text x="0" y="40" text-anchor="middle" font-size="12" font-weight="600" fill="#333">หลอด 2</text>
+                                </g>
+                                
+                                <!-- Wires -->
+                                <!-- Top wire: Battery + to Switch -->
+                                <line class="sim-wire wire-1" x1="98" y1="145" x2="150" y2="145" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Switch to Bulb 1 -->
+                                <line class="sim-wire wire-2" x1="190" y1="145" x2="280" y2="145" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Bulb 1 to Bulb 2 -->
+                                <line class="sim-wire wire-3" x1="320" y1="145" x2="430" y2="145" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Bulb 2 to bottom wire -->
+                                <line class="sim-wire wire-4" x1="450" y1="165" x2="450" y2="200" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Bottom return wire -->
+                                <line class="sim-wire wire-5" x1="450" y1="200" x2="74" y2="200" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Battery - connection -->
+                                <line class="sim-wire wire-6" x1="74" y1="200" x2="74" y2="170" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Current flow animation -->
+                                <circle class="current-dot" r="4" fill="#2196F3" opacity="0">
+                                    <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#series-sim-path"/>
+                                    </animateMotion>
+                                </circle>
+                                
+                                <!-- Path for current animation -->
+                                <path id="series-sim-path" d="M 98,145 L 150,145 L 190,145 L 280,145 L 320,145 L 430,145 L 450,165 L 450,200 L 74,200 L 74,170" 
+                                      fill="none" stroke="none"/>
+                                      
+                                <!-- Voltage indicators -->
+                                <text class="voltage-indicator" x="74" y="120" text-anchor="middle" font-size="10" fill="#666" opacity="0">3V</text>
+                                <text class="voltage-indicator" x="300" y="120" text-anchor="middle" font-size="10" fill="#666" opacity="0">1.5V</text>
+                                <text class="voltage-indicator" x="450" y="120" text-anchor="middle" font-size="10" fill="#666" opacity="0">1.5V</text>
+                            </svg>
+                        </div>
+                        <div class="simulator-controls">
+                            <button onclick="toggleSeriesCircuit()" id="seriesToggle">เปิด/ปิด สวิตช์</button>
+                            <button onclick="removeSeriesBulb()" id="seriesRemove">ถอดหลอด 1</button>
+                            <button onclick="resetSeriesCircuit()" id="seriesReset">รีเซ็ต</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parallel Circuit -->
+            <div class="circuit-type">
+                <div class="circuit-header">
+                    <h3><i class="fas fa-code-branch"></i> วงจรไฟฟ้าแบบขนาน (Parallel Circuit)</h3>
+                </div>
+                <div class="circuit-content">
+                    <div class="circuit-info">
+                        <h4>ลักษณะสำคัญ:</h4>
+                        <ul>
+                            <li>หลอดไฟแต่ละดวงมีเส้นทางแยกจากกัน</li>
+                            <li>กระแสไฟฟ้าแยกไหลผ่านหลายทาง</li>
+                            <li>แต่ละหลอดได้รับความต่างศักย์เท่ากัน</li>
+                        </ul>
+                        <h4>ผลที่เกิดขึ้น:</h4>
+                        <ul>
+                            <li>หากหลอดใดดับ หลอดอื่นยังสว่างได้</li>
+                            <li>หากถอดหลอดไฟออก 1 หลอด หลอดที่เหลือยังคงสว่าง</li>
+                        </ul>
+                    </div>
+                    <div class="circuit-simulator">
+                        <div class="simulator-title">จำลองวงจรแบบขนาน</div>
+                        <div class="circuit-diagram-container">
+                            <svg class="circuit-svg" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Circuit Background -->
+                                <rect x="0" y="0" width="600" height="350" fill="#f8f9ff" stroke="#e8f2ff" stroke-width="2" rx="10"/>
+                                
+                                <!-- Battery -->
+                                <g class="sim-battery" id="simParallelBattery" transform="translate(50, 155)">
+                                    <rect x="0" y="10" width="40" height="30" fill="#4CAF50" stroke="#388E3C" stroke-width="3" rx="5"/>
+                                    <rect x="40" y="20" width="8" height="10" fill="#4CAF50"/>
+                                    <text x="24" y="55" text-anchor="middle" font-size="12" font-weight="600" fill="#333">ถ่าน</text>
+                                    <text x="10" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="white">-</text>
+                                    <text x="45" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="white">+</text>
+                                </g>
+                                
+                                <!-- Switch -->
+                                <g class="sim-switch" id="simParallelSwitch" transform="translate(150, 170)">
+                                    <circle cx="0" cy="0" r="12" fill="#FF9800" stroke="#F57C00" stroke-width="3"/>
+                                    <circle cx="40" cy="0" r="12" fill="#FF9800" stroke="#F57C00" stroke-width="3"/>
+                                    <line class="switch-lever" x1="0" y1="0" x2="35" y2="-15" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+                                    <text x="20" y="35" text-anchor="middle" font-size="12" font-weight="600" fill="#333">สวิตช์</text>
+                                </g>
+                                
+                                <!-- Junction Points -->
+                                <circle cx="280" cy="170" r="5" fill="#333"/>
+                                <circle cx="480" cy="170" r="5" fill="#333"/>
+                                
+                                <!-- Bulb 1 (Top branch) -->
+                                <g class="sim-bulb" id="simParallelBulb1" transform="translate(380, 120)">
+                                    <circle cx="0" cy="0" r="20" fill="#FFF3E0" stroke="#FF9800" stroke-width="3"/>
+                                    <text x="0" y="5" text-anchor="middle" font-size="20">💡</text>
+                                    <text x="0" y="40" text-anchor="middle" font-size="12" font-weight="600" fill="#333">หลอด 1</text>
+                                </g>
+                                
+                                <!-- Bulb 2 (Bottom branch) -->
+                                <g class="sim-bulb" id="simParallelBulb2" transform="translate(380, 220)">
+                                    <circle cx="0" cy="0" r="20" fill="#FFF3E0" stroke="#FF9800" stroke-width="3"/>
+                                    <text x="0" y="5" text-anchor="middle" font-size="20">💡</text>
+                                    <text x="0" y="40" text-anchor="middle" font-size="12" font-weight="600" fill="#333">หลอด 2</text>
+                                </g>
+                                
+                                <!-- Wires -->
+                                <!-- Main line: Battery + to Switch -->
+                                <line class="sim-wire wire-1" x1="98" y1="170" x2="150" y2="170" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Switch to junction -->
+                                <line class="sim-wire wire-2" x1="190" y1="170" x2="275" y2="170" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Top branch -->
+                                <line class="sim-wire wire-3" x1="280" y1="170" x2="280" y2="120" stroke="#666" stroke-width="4"/>
+                                <line class="sim-wire wire-4" x1="280" y1="120" x2="360" y2="120" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Bottom branch -->
+                                <line class="sim-wire wire-5" x1="280" y1="170" x2="280" y2="220" stroke="#666" stroke-width="4"/>
+                                <line class="sim-wire wire-6" x1="280" y1="220" x2="360" y2="220" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Return wires -->
+                                <line class="sim-wire wire-7" x1="400" y1="120" x2="480" y2="120" stroke="#666" stroke-width="4"/>
+                                <line class="sim-wire wire-8" x1="400" y1="220" x2="480" y2="220" stroke="#666" stroke-width="4"/>
+                                <line class="sim-wire wire-9" x1="480" y1="120" x2="480" y2="220" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Return to battery -->
+                                <line class="sim-wire wire-10" x1="480" y1="170" x2="74" y2="250" stroke="#666" stroke-width="4"/>
+                                <line class="sim-wire wire-11" x1="74" y1="250" x2="74" y2="195" stroke="#666" stroke-width="4"/>
+                                
+                                <!-- Current flow animations -->
+                                <circle class="current-dot-1" r="4" fill="#2196F3" opacity="0">
+                                    <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#parallel-sim-path-1"/>
+                                    </animateMotion>
+                                </circle>
+                                
+                                <circle class="current-dot-2" r="4" fill="#FF5722" opacity="0">
+                                    <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#parallel-sim-path-2"/>
+                                    </animateMotion>
+                                </circle>
+                                
+                                <!-- Paths for current animation -->
+                                <path id="parallel-sim-path-1" d="M 98,170 L 150,170 L 190,170 L 275,170 L 280,120 L 360,120 L 400,120 L 480,120 L 480,170 L 74,250 L 74,195" 
+                                      fill="none" stroke="none"/>
+                                <path id="parallel-sim-path-2" d="M 98,170 L 150,170 L 190,170 L 275,170 L 280,220 L 360,220 L 400,220 L 480,220 L 480,170 L 74,250 L 74,195" 
+                                      fill="none" stroke="none"/>
+                                      
+                                <!-- Voltage indicators -->
+                                <text class="voltage-indicator" x="74" y="145" text-anchor="middle" font-size="10" fill="#666" opacity="0">3V</text>
+                                <text class="voltage-indicator" x="380" y="95" text-anchor="middle" font-size="10" fill="#666" opacity="0">3V</text>
+                                <text class="voltage-indicator" x="380" y="265" text-anchor="middle" font-size="10" fill="#666" opacity="0">3V</text>
+                            </svg>
+                        </div>
+                        <div class="simulator-controls">
+                            <button onclick="toggleParallelCircuit()" id="parallelToggle">เปิด/ปิด สวิตช์</button>
+                            <button onclick="removeParallelBulb()" id="parallelRemove">ถอดหลอด 1</button>
+                            <button onclick="resetParallelCircuit()" id="parallelReset">รีเซ็ต</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Circuit Building Activity -->
+        <section class="activity-section">
+            <div class="section-header">
+                <h2><i class="fas fa-puzzle-piece"></i> กิจกรรม: สร้างวงจรไฟฟ้า</h2>
+                <p>ใช้โปรแกรมจำลองเพื่อสร้างและทดลองวงจรไฟฟ้าแบบต่างๆ</p>
+            </div>
+            
+            <!-- PhET Simulation Link -->
+            <div style="margin-top: 2rem; text-align: center; padding: 2rem; background: linear-gradient(135deg, #e8f5e8, #f0fff0); border-radius: 15px; border: 2px solid #52c41a;">
+                <h3 style="color: #52c41a; margin-bottom: 1rem;">
+                    <i class="fas fa-external-link-alt"></i> จำลองการทดลองเพิ่มเติม
+                </h3>
+                <p style="margin-bottom: 1.5rem; color: #555;">
+                    ทดลองสร้างวงจรไฟฟ้าแบบต่างๆ ด้วยโปรแกรมจำลองจาก PhET Interactive Simulations
+                </p>
+                <a href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_th.html" 
+                   target="_blank" 
+                   style="display: inline-block; background: linear-gradient(45deg, #52c41a, #73d13d); color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(82, 196, 26, 0.3);">
+                    🔬 เปิดโปรแกรมจำลอง PhET
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    💡 แนะนำ: ใช้โปรแกรมนี้เพื่อทดลองสร้างวงจรไฟฟ้าแบบต่างๆ และสังเกตผลการทำงาน
+                </p>
+            </div>
+        </section>
+
+        <!-- Knowledge Check -->
+        <section class="knowledge-check-section">
+            <div class="section-header">
+                <h2><i class="fas fa-clipboard-check"></i> แบบทดสอบความเข้าใจ</h2>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-question" id="quizQuestion1">
+                    <h3>คำถามที่ 1</h3>
+                    <p>ในวงจรไฟฟ้าที่มีหลอดไฟฟ้ามากกว่า 1 หลอด ต่อแบบอนุกรม เมื่อถอดหลอดไฟฟ้าออก 1 หลอด มีผลอย่างไรกับหลอดไฟฟ้าที่เหลือ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="true">
+                            <input type="radio" name="quiz1" id="quiz1a" value="a">
+                            <label for="quiz1a">หลอดไฟฟ้าที่เหลือจะดับ</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz1" id="quiz1b" value="b">
+                            <label for="quiz1b">หลอดไฟฟ้าที่เหลือยังคงสว่าง</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz1" id="quiz1c" value="c">
+                            <label for="quiz1c">หลอดไฟฟ้าที่เหลือสว่างขึ้น</label>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback1"></div>
+                </div>
+
+                <div class="quiz-question" id="quizQuestion2">
+                    <h3>คำถามที่ 2</h3>
+                    <p>ในวงจรไฟฟ้าที่มีหลอดไฟฟ้ามากกว่า 1 หลอด ต่อแบบขนาน เมื่อถอดหลอดไฟฟ้าออก 1 หลอด มีผลอย่างไรกับหลอดไฟฟ้าที่เหลือ?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz2" id="quiz2a" value="a">
+                            <label for="quiz2a">หลอดไฟฟ้าที่เหลือจะดับ</label>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <input type="radio" name="quiz2" id="quiz2b" value="b">
+                            <label for="quiz2b">หลอดไฟฟ้าที่เหลือยังคงสว่าง</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz2" id="quiz2c" value="c">
+                            <label for="quiz2c">หลอดไฟฟ้าที่เหลือสว่างขึ้น</label>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback2"></div>
+                </div>
+
+                <div class="quiz-question" id="quizQuestion3">
+                    <h3>คำถามที่ 3</h3>
+                    <p>ในอาคารบ้านเรือน ควรใช้วงจรไฟฟ้าแบบใด เพื่อให้อุปกรณ์ไฟฟ้าต่างๆ ทำงานอิสระต่อกัน?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz3" id="quiz3a" value="a">
+                            <label for="quiz3a">วงจรแบบอนุกรม</label>
+                        </div>
+                        <div class="quiz-option" data-correct="true">
+                            <input type="radio" name="quiz3" id="quiz3b" value="b">
+                            <label for="quiz3b">วงจรแบบขนาน</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" name="quiz3" id="quiz3c" value="c">
+                            <label for="quiz3c">ทั้งสองแบบให้ผลเหมือนกัน</label>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback3"></div>
+                </div>
+
+                <div class="quiz-score" id="quizScore">
+                    <h3>คะแนน: <span id="scoreDisplay">0/3</span></h3>
+                    <button onclick="resetQuiz()" class="reset-btn">ทำแบบทดสอบใหม่</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <div class="section-header">
+                <h2><i class="fas fa-check-circle"></i> สรุปผลการเรียนรู้</h2>
+            </div>
+            
+            <div class="summary-content">
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="summary-text">
+                            <h3>วงจรไฟฟ้าแบบอนุกรม</h3>
+                            <p>หากถอดหลอดไฟฟ้าหลอดใดหลอดหนึ่งออก จะมีผลทำให้หลอดไฟฟ้าอีกหลอดดับ เหมาะสำหรับการควบคุมอุปกรณ์หลายชิ้นพร้อมกัน</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="summary-text">
+                            <h3>วงจรไฟฟ้าแบบขนาน</h3>
+                            <p>เมื่อถอดหลอดไฟฟ้าหลอดใดหลอดหนึ่งออก หลอดไฟฟ้าอีกหลอดยังคงสว่าง เหมาะสำหรับการใช้งานในบ้านเรือน</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="summary-text">
+                            <h3>การประยุกต์ใช้จริง</h3>
+                            <p>ในอาคารบ้านเรือนจะต่อวงจรไฟฟ้าแบบขนาน เพื่อให้อุปกรณ์ไฟฟ้าต่างๆ ทำงานอิสระต่อกัน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety Section -->
+        <section class="safety-section">
+            <div class="section-header">
+                <h2><i class="fas fa-shield-alt"></i> ข้อควรระวังด้านความปลอดภัย</h2>
+            </div>
+            
+            <div class="safety-content">
+                <div class="safety-grid">
+                    <div class="safety-item teacher">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> สำหรับครู</h3>
+                        <ul>
+                            <li>ตรวจสอบสวิตช์ให้วงจรเปิดทุกครั้ง ก่อนต่อวงจรไฟฟ้าเข้ากับถ่านไฟฉาย</li>
+                            <li>ตรวจสอบอุปกรณ์ว่าไม่มีการชำรุดหรือเสื่อมสภาพ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="safety-item student">
+                        <h3><i class="fas fa-user-graduate"></i> สำหรับนักเรียน</h3>
+                        <ul>
+                            <li>ระมัดระวังอุปกรณ์ ใช้อุปกรณ์ด้วยความระมัดระวัง</li>
+                            <li>ตรวจสอบการต่อวงจรให้ถูกต้องก่อนเปิดสวิตช์</li>
+                            <li>ปฏิบัติตามคำแนะนำของครูอย่างเคร่งครัด</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="lesson-navigation">
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>กลับหน้าหลัก</span>
+                </a>
+                <a href="lesson2.html" class="nav-btn next">
+                    <span>ตอนที่ 2: สวิตช์เปิด-ปิด</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Progress Modal -->
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <h3>🎉 ยินดีด้วย!</h3>
+            <p>คุณได้ทำกิจกรรมครบแล้ว จุดประสงค์การเรียนรู้ที่ <span id="achievedObjective"></span> สำเร็จ!</p>
+            <button onclick="closeModal()" class="modal-btn">ดีใจด้วย</button>
+        </div>
+    </div>
+
+    <script src="lesson1-script.js"></script>
+</body>
+</html>

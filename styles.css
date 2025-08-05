@@ -260,6 +260,12 @@ section {
     font-weight: 500;
 }
 
+.start-lesson-btn:hover {
+    background: linear-gradient(45deg, #449a1a, #5fb85f) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(82, 196, 26, 0.3);
+}
+
 /* Learning Plans Section */
 .learning-plans {
     background: white;
